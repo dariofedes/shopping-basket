@@ -3,11 +3,19 @@ import { render, screen } from '@testing-library/react'
 import App from './App'
 
 describe('App', () => {
-    it('should show an item name', () => {
+    it('should show a product name', () => {
         render(<App />)
     
-        const item = screen.getByText('LaJusticia colágeno con magnesio 450comp')
+        const productName = screen.getByText('LaJusticia colágeno con magnesio 450comp')
     
-        expect(item).toBeInTheDocument()
+        expect(productName).toBeInTheDocument()
+    })
+
+    it('should show a product price', () => {
+        render(<App />)
+    
+        const productPrice = screen.getByText('14,35€')
+    
+        expect(productPrice).toBeInTheDocument()
     })
 })

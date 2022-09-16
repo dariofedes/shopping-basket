@@ -2,7 +2,10 @@ import './App.css';
 
 function App() {
   return (
-    <p>LaJusticia colágeno con magnesio 450comp</p>
+    <div>
+      <p>LaJusticia colágeno con magnesio 450comp</p>
+      <p>14,35€</p>
+    </div>
   );
 }
 
