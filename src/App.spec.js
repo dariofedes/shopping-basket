@@ -18,4 +18,12 @@ describe('App', () => {
     
         expect(productPrice).toBeInTheDocument()
     })
+
+    it('should show a button to add the product to the basket', () => {
+        render(<App />)
+    
+        const addToBasketButton = screen.getByRole('button')
+    
+        expect(addToBasketButton).toHaveTextContent('Añadir a la cesta')
+    })
 })
