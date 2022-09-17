@@ -19,11 +19,13 @@ export default function LineProduct({ product }) {
     )
 }
 
+export const productType = PropTypes.exact({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired
+})
+
 LineProduct.propTypes = {
-    product: PropTypes.exact({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired
-    }).isRequired
+    product: productType.isRequired
 }

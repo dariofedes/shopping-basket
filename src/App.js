@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.sass';
-import LineProduct from './components/LineProduct/LineProduct'
+import ProductList from './components/ProductList/ProductList';
 import ProductService from './services/product-service';
 import ProductRepository from './domain/product-repository';
 
@@ -17,14 +17,10 @@ function App() {
   }, [])
 
   return (
-    <div className='product-list'>
-      {products && products.map(product => (
-        <LineProduct
-          className='product-list__product'
-          product={product}
-          key={product.id}
-        />
-      ))}
+    <div className='app'>
+      {
+        products && <ProductList className='app__product-list' products={products} />
+      }
     </div>
   );
 }
