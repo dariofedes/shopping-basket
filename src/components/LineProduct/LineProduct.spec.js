@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react'
-import LineProduct from '.'
+import LineProduct from './LineProduct'
 
 describe('LineProduct', () => {
     const product = {

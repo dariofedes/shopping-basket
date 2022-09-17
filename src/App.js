@@ -18,7 +18,13 @@ function App() {
 
   return (
     <div className='product-list'>
-      {products && products.map(product => <LineProduct product={product} key={product.id} />)}
+      {products && products.map(product => (
+        <LineProduct
+          className='product-list__product'
+          product={product}
+          key={product.id}
+        />
+      ))}
     </div>
   );
 }
