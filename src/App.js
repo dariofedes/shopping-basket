@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import './App.css';
-import LineProduct from './components/LineProduct'
+import './App.sass';
+import LineProduct from './components/LineProduct/LineProduct'
 import ProductService from './services/product-service';
 import ProductRepository from './domain/product-repository';
 
