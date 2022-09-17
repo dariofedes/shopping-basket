@@ -3,7 +3,7 @@ import LineProduct from './components/LineProduct'
 
 function App() {
   return (
-    <div>
+    <div className='product-list'>
       <LineProduct />
     </div>
   );
