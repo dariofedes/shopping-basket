@@ -7,7 +7,7 @@ export default function LineProduct({ product }) {
         <div className='line-product'>
             <p className='line-product__name'>{product.name}</p>
             <div className='line-product__details'>
-                <p className='line-product__price'>{product.price}</p>
+                <p className='line-product__price'>{product.price}€</p>
                 <button className='line-product__add-to-basket add-to-basket' type='button'>
                     <img className='add-to-basket__icon' 
                         src={addToBasketIcon} 
@@ -21,7 +21,9 @@ export default function LineProduct({ product }) {
 
 LineProduct.propTypes = {
     product: PropTypes.exact({
+        id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired
+        price: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired
     }).isRequired
 }

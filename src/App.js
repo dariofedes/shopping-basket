@@ -1,15 +1,24 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import LineProduct from './components/LineProduct'
+import ProductService from './services/product-service';
+import ProductRepository from './domain/product-repository';
 
 function App() {
-  const product = {
-    name: 'LaJusticia colágeno con magnesio 450comp',
-    price: '14,35€'
-  }
-  
+  const productRepository = new ProductRepository()
+  const productService = new ProductService(productRepository)
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      const retrievedProducts = await productService.retrieveProducts()
+      setProducts(retrievedProducts)
+    })()
+  }, [])
+
   return (
     <div className='product-list'>
-      <LineProduct product={product} />
+      {products && products.map(product => <LineProduct product={product} key={product.id} />)}
     </div>
   );
 }

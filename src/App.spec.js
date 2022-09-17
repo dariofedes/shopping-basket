@@ -1,29 +1,45 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
+import ProductService from './services/product-service';
 import App from './App'
 
 describe('App', () => {
-    it('should show a product name', () => {
-        render(<App />)
-    
-        const productName = screen.getByText('LaJusticia colágeno con magnesio 450comp')
-    
-        expect(productName).toBeInTheDocument()
+    const product = {
+        id: 1,
+        name: 'A product name',
+        price: 100,
+        image: 'an-image-uri.jpg'
+    }
+    const products = [product]
+
+    beforeEach(() => {
+        const productsPromise = new Promise(resolve => {
+            resolve(products)
+        })
+        jest.mock('./services/product-service.js')
+        ProductService.prototype.retrieveProducts = jest.fn(() => productsPromise)
     })
 
-    it('should show a product price', () => {
+    it('should retrieve all products', async () => {
+        // When
         render(<App />)
-    
-        const productPrice = screen.getByText('14,35€')
-    
+
+        // Then
+        await waitFor(() => expect(ProductService.prototype.retrieveProducts).toHaveBeenCalled())
+    })
+
+    it('should show name and price for each product', async () => {
+        // When
+        render(<App />)
+
+        // Then
+        const productName = await screen.findByText(product.name)
+        const productPrice = await screen.findByText(`${product.price}€`)
+        expect(productName).toBeInTheDocument()
         expect(productPrice).toBeInTheDocument()
     })
 
-    it('should show a button to add the product to the basket', () => {
-        render(<App />)
-    
-        const addToBasketButton = screen.getByRole('button')
-    
-        expect(addToBasketButton).toBeInTheDocument()
+    afterEach(() => {
+        jest.clearAllMocks()
     })
 })

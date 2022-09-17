@@ -4,8 +4,10 @@ import LineProduct from '.'
 
 describe('LineProduct', () => {
     const product = {
+        id: 1,
         name: 'A product name',
-        price: 'A product price'
+        price: 100,
+        image: 'an-image-uri.jpg'
     }
 
     it('should show the given product name', () => {
@@ -18,8 +20,10 @@ describe('LineProduct', () => {
 
     it('should show the given product price', () => {
         render(<LineProduct product={product} />)
+
+        const priceTag = `${product.price}€`
     
-        const productPrice = screen.getByText(product.price)
+        const productPrice = screen.getByText(priceTag)
     
         expect(productPrice).toBeInTheDocument()
     })
