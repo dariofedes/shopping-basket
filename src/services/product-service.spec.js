@@ -1,5 +1,5 @@
 import ProductService from './product-service'
-import ProductRepository from '../domain/product-repository'
+import ProductRepository from '../infrastructure/product-repository'
 
 describe('ProductService', () => {
     let productService
