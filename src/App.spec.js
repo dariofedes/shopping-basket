@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react'
 import ProductService from './services/product-service';
+import BasketService from './services/basket-service';
 import App from './App'
 
 describe('App', () => {
@@ -18,6 +19,12 @@ describe('App', () => {
         })
         jest.mock('./services/product-service.js')
         ProductService.prototype.retrieveProducts = jest.fn(() => productsPromise)
+
+        const basketProductsPromise = new Promise(resolve => {
+            resolve([])
+        })
+        jest.mock('./services/basket-service.js')
+        BasketService.prototype.retrieveBasketProducts = jest.fn(() => basketProductsPromise)
     })
 
     it('should retrieve all products', async () => {
@@ -46,6 +53,24 @@ describe('App', () => {
         const basketTitle = screen.getByText('MI CESTA:')
         expect(basketTitle).toBeInTheDocument()
     })
+
+    it('should retrieve products in the basket', async () => {
+        // Given
+        const basketProductsPromise = new Promise(resolve => {
+            resolve(products)
+        })
+        const spyRetrieveBasketProducts = jest.fn(() => basketProductsPromise)
+
+        BasketService.prototype.retrieveBasketProducts = spyRetrieveBasketProducts
+
+        // When
+        render(<App />)
+
+        // Then
+        await waitFor(() => expect(spyRetrieveBasketProducts).toHaveBeenCalled())
+    })
+
+    
 
     afterEach(() => {
         jest.clearAllMocks()

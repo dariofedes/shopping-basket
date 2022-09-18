@@ -1,14 +1,8 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react'
 import Basket from './Basket'
-import ProductService from '../../services/product-service'
 
 describe('Basket', () => {
-    beforeEach(() => {
-        jest.mock('../../services/product-service')
-        ProductService.prototype.loadImage = jest.fn(() => 'an-image-uri.jpg')
-    })
-
     it('should show the basket with 0 products added', () => {
         // When
         render(<Basket />)
@@ -60,9 +54,5 @@ describe('Basket', () => {
         expect(screen.getByText('200,00 €')).toBeInTheDocument()
         expect(screen.getByText('A product name 3')).toBeInTheDocument()
         expect(screen.getByText('300,00 €')).toBeInTheDocument()
-    })
-
-    afterEach(() => {
-        jest.clearAllMocks()
     })
 })

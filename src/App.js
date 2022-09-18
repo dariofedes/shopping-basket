@@ -4,16 +4,22 @@ import ProductList from './components/LineProductList/LineProductList';
 import ProductService from './services/product-service';
 import ProductRepository from './domain/product-repository';
 import Basket from './components/Basket/Basket'
+import BasketService from './services/basket-service';
 
 function App() {
   const productRepository = new ProductRepository()
   const productService = new ProductService(productRepository)
+  const basketService = new BasketService()
   const [products, setProducts] = useState([])
+  const [basketProducts, setBasketProducts] = useState([])
 
   useEffect(() => {
     (async () => {
       const retrievedProducts = await productService.retrieveProducts()
       setProducts(retrievedProducts)
+
+      const retrievedBasketProducts = await basketService.retrieveBasketProducts()
+      setBasketProducts(retrievedBasketProducts)
     })()
   }, [])
 
@@ -22,7 +28,7 @@ function App() {
       {
         products && <ProductList className='app__product-list' products={products} />
       }
-      <Basket />
+      <Basket products={basketProducts} />
       </div>
   );
 }

@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react'
 import BasketProduct from './BasketProduct'
-import ProductService from '../../services/product-service'
 
 describe('BasketProduct', () => {
     const product = {
@@ -10,11 +9,6 @@ describe('BasketProduct', () => {
         price: 100,
         image: 'an-image-uri.jpg'
     }
-
-    beforeEach(() => {
-        jest.mock('../../services/product-service')
-        ProductService.prototype.loadImage = jest.fn(() => 'an-image-uri.jpg')
-    })
 
     it('should show the given product name', () => {
         render(<BasketProduct product={product} />)
@@ -45,9 +39,5 @@ describe('BasketProduct', () => {
         const productImage = screen.getByRole('img')
         expect(productImage).toBeInTheDocument()
         expect(productImage.alt).toBe(expectedAltText)
-    })
-
-    afterEach(() => {
-        jest.clearAllMocks()
     })
 })

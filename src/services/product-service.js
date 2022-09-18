@@ -11,6 +11,10 @@ export default class ProductService {
     }
 
     loadImage(imageName) {
-        return require(`../asets/${imageName}`)
+        try {
+            return require(`../asets/${imageName}`)
+        } catch {
+            return ""
+        }
     }
 }
