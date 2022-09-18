@@ -21,7 +21,7 @@ describe('LineProduct', () => {
     it('should show the given product price', () => {
         render(<LineProduct product={product} />)
 
-        const priceTag = `${product.price}€`
+        const priceTag = `100,00 €`
     
         const productPrice = screen.getByText(priceTag)
     
@@ -34,5 +34,23 @@ describe('LineProduct', () => {
         const addToBasketButton = screen.getByRole('button')
     
         expect(addToBasketButton).toBeInTheDocument()
+    })
+
+    it('should show the prices with "," for separate decimals', () => {
+        // Given
+        const productWithFloatPrice = {
+            id: 1,
+            name: 'A product name',
+            price: 100.1,
+            image: 'an-image-uri.jpg'
+        }
+        const priceTag = `100,10 €`
+        
+        // When
+        render(<LineProduct product={productWithFloatPrice} />)
+        
+        // Then
+        const productPrice = screen.getByText(priceTag)
+        expect(productPrice).toBeInTheDocument()
     })
 })
