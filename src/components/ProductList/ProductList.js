@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import LineProduct, { productType } from "../LineProduct/LineProduct";
+import './styles.sass'
 
 export default function ProductList({ products }) {
     return (

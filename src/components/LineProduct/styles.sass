@@ -1,11 +1,13 @@
+@import ../../color-palette
+    
 .line-product
     display: flex
     justify-content: space-between
     align-items: center
     &__name
-        max-width: 50%
         margin-right: 1rem
         font-size: 16px
+
     &__details
     &__price
         display: inline
@@ -16,11 +18,10 @@
 
 .add-to-basket
     padding: .5rem 1rem
-    background-color: #96be3a
+    background-color: $primary-color
     border: none
     border-radius: 5px
     color: white
     &__icon
-        fill: #FFF !important
         height: auto
         width: 40px

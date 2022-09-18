@@ -1,2 +1,39 @@
+@import ./color-palette
+
 .app
     padding: 1rem
+    display: flex
+    justify-content: space-between
+    &__basket
+
+.basket
+    box-shadow: 0px 0px 5px -1px grey
+    border-radius: 5px
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    &__header
+        padding: 0 1rem
+        border-bottom: 1px solid $primary-color
+    &__title
+        font-size: 16px
+        font-weight: 600
+        color: $primary-color
+    &__footer
+        display: flex
+        justify-content: space-between
+        align-items: baseline
+        gap: 5rem
+        padding: 1rem
+    &__total-products
+        align-items: baseline
+        gap: 1rem
+        display: flex
+    &__total-title
+        font-size: 22px
+        font-weight: 700
+    &__total-products-count
+        font-size: 16px
+    &__total-price
+        font-size: 24px
+        font-weight: 700

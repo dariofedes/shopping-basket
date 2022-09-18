@@ -21,7 +21,7 @@ function App() {
       {
         products && <ProductList className='app__product-list' products={products} />
       }
-      <div className='app__basket'>
+      <div className='app__basket basket'>
         <div className='basket__header'>
           <h1 className='basket__title'>MI CESTA:</h1>
         </div>
