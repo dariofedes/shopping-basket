@@ -11,7 +11,7 @@ export default function Basket({ products = [] }) {
             </div>
             <ul className='basket__product-list'>
                 {
-                    products.map(product => <BasketProduct product={product} />)
+                    products.map(product => <BasketProduct product={product} key={product.id} />)
                 }
             </ul>
             <div className='basket__footer'>
