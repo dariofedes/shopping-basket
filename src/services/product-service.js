@@ -9,12 +9,4 @@ export default class ProductService {
     async retrieveProducts() {
         return this.productRepository.getAll()
     }
-
-    loadImage(imageName) {
-        try {
-            return require(`../asets/${imageName}`)
-        } catch {
-            return ""
-        }
-    }
 }

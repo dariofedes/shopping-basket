@@ -28,16 +28,12 @@ describe('BasketProduct', () => {
         expect(productPrice).toBeInTheDocument()
     })
 
-    it('should show an image of the product with its name as alt text', () => {
-        // Given
-        const expectedAltText = 'an image uri'
-
+    it('should show an image of the product', () => {
         // When
         render(<BasketProduct product={product} />)
 
         // Then
         const productImage = screen.getByRole('img')
         expect(productImage).toBeInTheDocument()
-        expect(productImage.alt).toBe(expectedAltText)
     })
 })
