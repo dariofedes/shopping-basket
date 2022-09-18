@@ -1,21 +1,13 @@
 import './styles.sass'
 import PropTypes from 'prop-types'
 import { productType } from '../LineProduct/LineProduct'
+import { ProductPrice } from '../index'
 
 export default function Basket({ products = [] }) {
-    const formatPrice = (price) => {
-        const euroFormatter = Intl.NumberFormat("es-ES", {
-            style: "currency",
-            currency: "EUR",
-        });
-
-        return euroFormatter.format(price)
-    }
-
     const basketProduct = (product) => (
         <li className='basket__product basket-product' key={product.id}>
             <p className='basket-product__name'>{product.name}</p>
-            <p className='basket-product__price'>{formatPrice(product.price)}</p>
+            <ProductPrice price={product.price} />
         </li>
     )
 
