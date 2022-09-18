@@ -34,9 +34,25 @@ describe('App', () => {
 
         // Then
         const productName = await screen.findByText(product.name)
-        const productPrice = await screen.findByText(`${product.price}€`)
+        const productPrice = await screen.findByText(`100,00 €`)
         expect(productName).toBeInTheDocument()
         expect(productPrice).toBeInTheDocument()
+    })
+
+    it('should show a basket with 0 products added', () => {
+        // When
+        render(<App />)
+
+        // Then
+        const basketTitle = screen.getByText('MI CESTA:')
+        const totalTitle = screen.getByText('TOTAL')
+        const totalProducts = screen.getByText('(0 productos)')
+        const totalPrice = screen.getByText('0,00 €')
+
+        expect(basketTitle).toBeInTheDocument()
+        expect(totalTitle).toBeInTheDocument()
+        expect(totalProducts).toBeInTheDocument()
+        expect(totalPrice).toBeInTheDocument()
     })
 
     afterEach(() => {
