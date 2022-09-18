@@ -5,11 +5,15 @@ import ProductService from './services/product-service';
 import ProductRepository from './domain/product-repository';
 import Basket from './components/Basket/Basket'
 import BasketService from './services/basket-service';
+import BasketRepository from './domain/basket-repository';
 
 function App() {
   const productRepository = new ProductRepository()
   const productService = new ProductService(productRepository)
-  const basketService = new BasketService()
+
+  const basketRepository = new BasketRepository()
+  const basketService = new BasketService(basketRepository)
+
   const [products, setProducts] = useState([])
   const [basketProducts, setBasketProducts] = useState([])
 

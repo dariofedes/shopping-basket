@@ -70,8 +70,6 @@ describe('App', () => {
         await waitFor(() => expect(spyRetrieveBasketProducts).toHaveBeenCalled())
     })
 
-    
-
     afterEach(() => {
         jest.clearAllMocks()
     })

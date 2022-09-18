@@ -29,4 +29,8 @@ describe('ProductService', () => {
         // Then
         expect(mockProductRepository.getAll).toHaveBeenCalled()
     })
+
+    afterEach(() => {
+        jest.clearAllMocks()
+    })
 })
