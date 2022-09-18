@@ -1,25 +1,17 @@
 import './styles.sass'
 import PropTypes from 'prop-types'
-import { productType } from '../LineProduct/LineProduct'
-import { ProductPrice } from '../index'
+import { productType } from '../Product/Product'
+import BasketProduct from '../BasketProduct/BasketProduct'
 
 export default function Basket({ products = [] }) {
-    const basketProduct = (product) => (
-        <li className='basket__product basket-product' key={product.id}>
-            <p className='basket-product__name'>{product.name}</p>
-            <ProductPrice price={product.price} />
-        </li>
-    )
-
     return (
         <div className='basket'>
             <div className='basket__header'>
             <h1 className='basket__title'>MI CESTA:</h1>
             </div>
-            <div className='basket__product-list' />
             <ul className='basket__product-list'>
                 {
-                    products.map(product => basketProduct(product))
+                    products.map(product => <BasketProduct product={product} />)
                 }
             </ul>
             <div className='basket__footer'>

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
-import LineProduct, { productType } from "../LineProduct/LineProduct";
+import LineProduct from "../LineProduct/LineProduct";
+import { productType } from '../Product/Product'
 import './styles.sass'
 
 export default function ProductList({ products }) {
     return (
-        <div className='product-list'>
+        <ul className='product-list'>
             {products && products.map(product => (
                 <LineProduct
                 className='product-list__product'
@@ -12,7 +13,7 @@ export default function ProductList({ products }) {
                 key={product.id}
                 />
             ))}
-        </div>
+        </ul>
     )
 }
 

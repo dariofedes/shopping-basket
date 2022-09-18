@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import './styles.sass'
 
 export default function ProductPrice ({ price }) {
     const formatPrice = () => {

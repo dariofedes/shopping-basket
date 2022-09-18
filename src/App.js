@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.sass';
-import ProductList from './components/ProductList/ProductList';
+import ProductList from './components/LineProductList/LineProductList';
 import ProductService from './services/product-service';
 import ProductRepository from './domain/product-repository';
 import Basket from './components/Basket/Basket'
