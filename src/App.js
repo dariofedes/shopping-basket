@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import { useEffect, useState } from 'react';
 import './App.sass';
 import ProductList from './components/LineProductList/LineProductList';
@@ -27,10 +28,15 @@ function App() {
     })()
   }, [])
 
+  function handleOnAddToBasket(product) {
+    const basketWithAddedProduct = [ ...basketProducts, product ]
+    setBasketProducts(basketWithAddedProduct)
+  }
+
   return (
     <div className='app'>
       {
-        products && <ProductList className='app__product-list' products={products} />
+        products && <ProductList className='app__product-list' products={products} onAddToBasket={handleOnAddToBasket} />
       }
       <Basket products={basketProducts} />
       </div>
