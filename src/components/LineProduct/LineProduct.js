@@ -18,7 +18,7 @@ export default function LineProduct({ product }) {
 
     return (
         <li className='line-product'>
-            <Product className='line-product__product' product={product} />
+            <Product className='line-product__product' product={product} inBasket={inBasket} />
             <AddToBasketButton addToBasket={() => addToBasket(product)} disabled={inBasket} />
         </li>
     )

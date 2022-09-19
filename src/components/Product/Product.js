@@ -2,11 +2,11 @@ import PropTypes from 'prop-types'
 import PriceTag from '../PriceTag/PriceTag'
 import './styles.sass'
 
-export default function Product ({ product }) {
+export default function Product ({ product, inBasket }) {
     return (
         <div className='product'>
             <p className='product__name'>{product.name}</p>
-            <PriceTag className='product__price' price={product.price} />
+            <PriceTag className='product__price' price={product.price} disabled={inBasket} />
         </div>
     )
 }
@@ -19,5 +19,10 @@ export const productType = PropTypes.exact({
 })
 
 Product.propTypes = {
-    product: productType.isRequired
+    product: productType.isRequired,
+    inBasket: PropTypes.bool
+}
+
+Product.defaultProps = {
+    inBasket: false
 }
