@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react'
-import ProductService from './services/product-service';
-import BasketService from './services/basket-service';
+import ProductService from './application/product-service';
+import BasketService from './application/basket-service';
 import App from './App'
 
 describe('App', () => {
@@ -17,13 +17,13 @@ describe('App', () => {
         const productsPromise = new Promise(resolve => {
             resolve(products)
         })
-        jest.mock('./services/product-service.js')
+        jest.mock('./application/product-service.js')
         ProductService.prototype.retrieveProducts = jest.fn(() => productsPromise)
 
         const basketProductsPromise = new Promise(resolve => {
             resolve([])
         })
-        jest.mock('./services/basket-service.js')
+        jest.mock('./application/basket-service.js')
         BasketService.prototype.retrieveBasketProducts = jest.fn(() => basketProductsPromise)
     })
 

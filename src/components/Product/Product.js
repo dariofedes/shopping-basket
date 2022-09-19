@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
-import ProductPrice from '../ProductPrice/ProductPrice'
+import PriceTag from '../PriceTag/PriceTag'
 import './styles.sass'
 
 export default function Product ({ product }) {
     return (
         <div className='product'>
             <p className='product__name'>{product.name}</p>
-            <ProductPrice className='product__price' price={product.price} />
+            <PriceTag className='product__price' price={product.price} />
         </div>
     )
 }

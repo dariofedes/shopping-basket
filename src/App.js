@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import './App.sass';
 import ProductList from './components/LineProductList/LineProductList';
-import ProductService from './services/product-service';
+import ProductService from './application/product-service';
 import ProductRepository from './infrastructure/product-repository';
-import Basket from './components/Basket/Basket'
-import BasketService from './services/basket-service';
+import BasketService from './application/basket-service';
 import BasketRepository from './infrastructure/basket-repository';
+import Basket from './components/Basket/Basket'
 
 function App() {
   const productRepository = new ProductRepository()

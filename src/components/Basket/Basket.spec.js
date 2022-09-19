@@ -3,6 +3,27 @@ import { render, screen } from '@testing-library/react'
 import Basket from './Basket'
 
 describe('Basket', () => {
+    const products = [
+        {
+            id: 1,
+            name: 'A product name 1',
+            price: 100,
+            image: 'an-image-uri.jpg'
+        },
+        {
+            id: 2,
+            name: 'A product name 2',
+            price: 200,
+            image: 'an-image-uri.jpg'
+        },
+        {
+            id: 3,
+            name: 'A product name 3',
+            price: 300,
+            image: 'an-image-uri.jpg'
+        },
+    ]
+
     it('should show the basket with 0 products added', () => {
         // When
         render(<Basket />)
@@ -20,28 +41,6 @@ describe('Basket', () => {
     })
 
     it('should show products added to the basket', () => {
-        // Given
-        const products = [
-            {
-                id: 1,
-                name: 'A product name 1',
-                price: 100,
-                image: 'an-image-uri.jpg'
-            },
-            {
-                id: 2,
-                name: 'A product name 2',
-                price: 200,
-                image: 'an-image-uri.jpg'
-            },
-            {
-                id: 3,
-                name: 'A product name 3',
-                price: 300,
-                image: 'an-image-uri.jpg'
-            },
-        ]
-
         // When
         render(<Basket products={products} />)
 
@@ -54,5 +53,23 @@ describe('Basket', () => {
         expect(screen.getByText('200,00 €')).toBeInTheDocument()
         expect(screen.getByText('A product name 3')).toBeInTheDocument()
         expect(screen.getByText('300,00 €')).toBeInTheDocument()
+    })
+
+    it('should show a count of products in basket', () => {
+        // When
+        render(<Basket products={products} />)
+
+        // Then
+        const productsCounter = screen.getByText('(3 productos)')
+        expect(productsCounter).toBeInTheDocument()
+    })
+
+    it('should show the total price of the products in basket', () => {
+        // When
+        render(<Basket products={products} />)
+
+        // Then
+        const totalPrice = screen.getByText('600,00 €')
+        expect(totalPrice).toBeInTheDocument()
     })
 })

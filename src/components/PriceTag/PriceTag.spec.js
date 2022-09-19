@@ -1,14 +1,14 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react'
-import ProductPrice from './ProductPrice'
+import PriceTag from './PriceTag'
 
-describe('ProductPrice', () => {
+describe('PriceTag', () => {
     it('should show the price in "XX,XX €" format', () =>{
         // Given
         const price = 100
 
         // When
-        render(<ProductPrice price={price} />)
+        render(<PriceTag price={price} />)
 
         // Then
         const renderedPrice = screen.getByText('100,00 €')
