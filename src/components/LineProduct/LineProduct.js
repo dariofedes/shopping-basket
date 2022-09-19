@@ -1,23 +1,19 @@
-/* eslint-disable react/jsx-no-bind */
-import PropTypes from 'prop-types'
 import Product, { productType } from '../Product/Product'
 import AddToBasketButton from '../AddToBasketButton/AddToBasketButton'
 import './styles.sass'
+import { useBasket } from '../../hooks/use-basket'
 
-export default function LineProduct({ product, onAddToBasket }) {
-    function addToBasket() {
-        onAddToBasket(product)
-    }
+export default function LineProduct({ product }) {
+    const { addToBasket } = useBasket()
 
     return (
         <li className='line-product'>
             <Product className='line-product__product' product={product} />
-            <AddToBasketButton addToBasket={addToBasket} />
+            <AddToBasketButton addToBasket={() => addToBasket(product)} />
         </li>
     )
 }
 
 LineProduct.propTypes = {
-    product: productType.isRequired,
-    onAddToBasket: PropTypes.func.isRequired
+    product: productType.isRequired
 }

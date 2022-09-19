@@ -54,22 +54,6 @@ describe('App', () => {
         expect(basketTitle).toBeInTheDocument()
     })
 
-    it('should retrieve products in the basket', async () => {
-        // Given
-        const basketProductsPromise = new Promise(resolve => {
-            resolve(products)
-        })
-        const spyRetrieveBasketProducts = jest.fn(() => basketProductsPromise)
-
-        BasketService.prototype.retrieveBasketProducts = spyRetrieveBasketProducts
-
-        // When
-        render(<App />)
-
-        // Then
-        await waitFor(() => expect(spyRetrieveBasketProducts).toHaveBeenCalled())
-    })
-
     afterEach(() => {
         jest.clearAllMocks()
     })

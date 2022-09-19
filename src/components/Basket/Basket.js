@@ -1,12 +1,13 @@
 import './styles.sass'
-import PropTypes from 'prop-types'
-import { productType } from '../Product/Product'
 import BasketProduct from '../BasketProduct/BasketProduct'
 import PriceTag from '../PriceTag/PriceTag'
+import { useBasket } from '../../hooks/use-basket'
 
-export default function Basket({ products = [] }) {
+export default function Basket() {
+    const { basket } = useBasket()
+
     function getTotal() {
-        return products.reduce((accumulator, product) => accumulator + product.price, 0)
+        return basket.reduce((accumulator, product) => accumulator + product.price, 0)
     }
 
     return (
@@ -16,24 +17,16 @@ export default function Basket({ products = [] }) {
             </div>
             <ul className='basket__product-list'>
                 {
-                    products.map(product => <BasketProduct product={product} key={product.id} />)
+                    basket.map(product => <BasketProduct product={product} key={product.id} />)
                 }
             </ul>
             <div className='basket__footer'>
             <div className='basket__total-products'>
                 <p className='basket__total-title'>TOTAL</p>
-                <p className='basket__total-products-count'>{`(${products.length} productos)`}</p>
+                <p className='basket__total-products-count'>{`(${basket.length} productos)`}</p>
             </div>
             <PriceTag price={getTotal()} total />
             </div>
         </div>
     )
-}
-
-Basket.propTypes = {
-    products: PropTypes.arrayOf(productType)
-}
-
-Basket.defaultProps = {
-    products: []
 }

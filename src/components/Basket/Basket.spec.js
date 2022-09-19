@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react'
 import Basket from './Basket'
+import * as hooks from '../../hooks/use-basket'
+
 
 describe('Basket', () => {
     const products = [
@@ -24,7 +26,13 @@ describe('Basket', () => {
         },
     ]
 
+    beforeEach(() => {
+        jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({ basket: products }))
+    })
+
     it('should show the basket with 0 products added', () => {
+        jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({ basket: [] }))
+
         // When
         render(<Basket />)
     
@@ -40,12 +48,12 @@ describe('Basket', () => {
         expect(totalPrice).toBeInTheDocument()
     })
 
-    it('should show products added to the basket', () => {
+    it('should show products added to the basket', async () => {
         // When
-        render(<Basket products={products} />)
+        render(<Basket />)
 
         // Then
-        const productsInBasket = screen.getAllByRole('listitem')
+        const productsInBasket = await screen.findAllByRole('listitem')
         expect(productsInBasket).toHaveLength(3)
         expect(screen.getByText('A product name 1')).toBeInTheDocument()
         expect(screen.getByText('100,00 €')).toBeInTheDocument()
@@ -57,7 +65,7 @@ describe('Basket', () => {
 
     it('should show a count of products in basket', () => {
         // When
-        render(<Basket products={products} />)
+        render(<Basket />)
 
         // Then
         const productsCounter = screen.getByText('(3 productos)')
@@ -66,7 +74,7 @@ describe('Basket', () => {
 
     it('should show the total price of the products in basket', () => {
         // When
-        render(<Basket products={products} />)
+        render(<Basket />)
 
         // Then
         const totalPrice = screen.getByText('600,00 €')
