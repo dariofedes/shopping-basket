@@ -14,4 +14,13 @@ describe('AddToBasketButton', () => {
         // Then
         expect(spyOnClickHandler).toHaveBeenCalled()
     })
+
+    it('should be desabled when disabled via props', () => {
+        // When
+        render(<AddToBasketButton disabled />)
+
+        // Then
+        const button = screen.getByRole('button')
+        expect(button).toBeDisabled()
+    })
 })

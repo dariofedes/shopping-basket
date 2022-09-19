@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import LineProduct from './LineProduct'
+import * as hooks from '../../hooks/use-basket'
+
 
 describe('LineProduct', () => {
     const product = {
@@ -36,21 +38,27 @@ describe('LineProduct', () => {
         expect(addToBasketButton).toBeInTheDocument()
     })
 
-    it('should show the prices with "," for separate decimals', () => {
+    it('should disable add to basket when already added', () => {
         // Given
-        const productWithFloatPrice = {
-            id: 1,
-            name: 'A product name',
-            price: 100.1,
-            image: 'an-image-uri.jpg'
-        }
-        const priceTag = `100,10 €`
-        
+        render(<LineProduct product={product} />)
+
         // When
-        render(<LineProduct product={productWithFloatPrice} />)
-        
+        const button = screen.getByRole('button')
+        fireEvent.click(button)
+
         // Then
-        const productPrice = screen.getByText(priceTag)
-        expect(productPrice).toBeInTheDocument()
+        expect(button).toBeDisabled()
+    })
+
+    it('should disable add to basket when already in basket', () => {
+        // Given
+        jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({ basket: [product] }))
+
+        // When
+        render(<LineProduct product={product} />)
+        const button = screen.getByRole('button')
+
+        // Then
+        expect(button).toBeDisabled()
     })
 })

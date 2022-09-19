@@ -2,9 +2,9 @@
 import PropTypes from 'prop-types'
 import './styles.sass'
 
-export default function AddTobasketButton ({ addToBasket }) {
+export default function AddTobasketButton ({ addToBasket, disabled }) {
     return (
-        <button className='add-to-basket' type='button' onClick={() => addToBasket()}>
+        <button className='add-to-basket' type='button' onClick={() => addToBasket()} disabled={disabled}>
             <img className='add-to-basket__icon' 
                 src={require('../../asets/add-to-cart.png')} 
                 alt='Añadir a la cesta'
@@ -14,5 +14,10 @@ export default function AddTobasketButton ({ addToBasket }) {
 }
 
 AddTobasketButton.propTypes = {
-    addToBasket: PropTypes.func.isRequired
+    addToBasket: PropTypes.func.isRequired,
+    disabled: PropTypes.bool
+}
+
+AddTobasketButton.defaultProps =  {
+    disabled: false
 }

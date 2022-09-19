@@ -4,7 +4,6 @@ import { render } from '@testing-library/react'
 import ProductList from './LineProductList'
 
 describe('ProductList', () => {
-    
     it.each([
         [[
             {
