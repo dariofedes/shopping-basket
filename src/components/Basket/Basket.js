@@ -14,21 +14,28 @@ export default function Basket() {
     return (
         <div className='basket'>
             <div className='basket__header'>
-            <h1 className='basket__title'>MI CESTA:</h1>
+                <h1 className='basket__title'>MI CESTA:</h1>
             </div>
             <ul className='basket__product-list'>
                 {
                     isLoading
                     ? <Loading />
-                    : basket.map(product => <BasketProduct product={product} key={product.id} />)
+                    : basket.map(product => (
+                        <BasketProduct
+                            product={product}
+                            key={product.id}
+                        />
+                    ))
                 }
             </ul>
-            <div className='basket__footer'>
-            <div className='basket__total-products'>
+            <div className='basket__total-container'>
                 <p className='basket__total-title'>TOTAL</p>
-                <p className='basket__total-products-count'>{`(${basket.length} productos)`}</p>
-            </div>
-            <PriceTag price={getTotal()} total />
+                <div className='basket__details'>
+                    <p className='basket__products-count'>
+                        {`(${basket.length} productos)`}
+                    </p>
+                    <PriceTag className='basket__total' price={getTotal()} total />
+                </div>
             </div>
         </div>
     )
