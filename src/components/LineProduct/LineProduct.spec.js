@@ -1,8 +1,7 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import LineProduct from './LineProduct'
 import * as hooks from '../../hooks/use-basket'
-
 
 describe('LineProduct', () => {
     const product = {
@@ -11,6 +10,15 @@ describe('LineProduct', () => {
         price: 100,
         image: 'an-image-uri.jpg'
     }
+
+    const mockUseBasket = {
+        basket: [],
+        isProductInBasket: jest.fn()
+    }
+
+    beforeEach(() => {
+        jest.spyOn(hooks, 'useBasket').mockImplementation(() => mockUseBasket)
+    })
 
     it('should show the given product name', () => {
         render(<LineProduct product={product} />)
@@ -40,20 +48,15 @@ describe('LineProduct', () => {
 
     it('should disable add to basket when already added', () => {
         // Given
-        render(<LineProduct product={product} />)
-
-        // When
-        const button = screen.getByRole('button')
-        fireEvent.click(button)
-
-        // Then
-        expect(button).toBeDisabled()
-    })
-
-    it('should disable add to basket when already in basket', () => {
-        // Given
-        jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({ basket: [product] }))
-
+        const mockUseBaskets = {
+            basket: [],
+            isProductInBasket: jest.fn(() => true)
+        }
+    
+        jest.spyOn(hooks, 'useBasket').mockImplementation(() => mockUseBaskets)
+        
+            
+        
         // When
         render(<LineProduct product={product} />)
         const button = screen.getByRole('button')

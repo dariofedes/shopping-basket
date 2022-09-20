@@ -5,10 +5,8 @@ export default class ProductRepository {
     constructor() {
         this.products = products
 
-        if(ProductRepository.instance) return ProductRepository.instance
-
-        ProductRepository.instance = this
-        return this
+        if(!ProductRepository.instance) ProductRepository.instance = this
+        return ProductRepository.instance
     }
 
     getAll() {

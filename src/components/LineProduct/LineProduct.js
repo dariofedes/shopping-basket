@@ -1,25 +1,15 @@
-import { useEffect, useState } from 'react'
 import Product, { productType } from '../Product/Product'
 import AddToBasketButton from '../AddToBasketButton/AddToBasketButton'
 import './styles.sass'
 import { useBasket } from '../../hooks/use-basket'
 
 export default function LineProduct({ product }) {
-    const [inBasket, setInBasket] = useState()
-    const { addToBasket, basket } = useBasket()
-
-    function isProductInBasket() {
-        return basket.filter(productInBasket => productInBasket.id === product.id).length > 0
-    }
-
-    useEffect(() => {
-        setInBasket(isProductInBasket())
-    }, [basket])
-
+    const { addToBasket, isProductInBasket } = useBasket()
+    
     return (
         <li className='line-product'>
-            <Product className='line-product__product' product={product} inBasket={inBasket} />
-            <AddToBasketButton addToBasket={() => addToBasket(product)} disabled={inBasket} />
+            <Product className='line-product__product' product={product} inBasket={isProductInBasket(product)} />
+            <AddToBasketButton addToBasket={() => addToBasket(product)} disabled={isProductInBasket(product)} />
         </li>
     )
 }

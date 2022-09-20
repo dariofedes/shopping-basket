@@ -6,7 +6,7 @@ import './styles.sass'
 export default function ProductImage({ imageName }) {
     function loadImage() {
         try {
-            return require(`../../asets/${imageName}`)
+            return require(`../../assets/${imageName}`)
         } catch {
             return ""
         }

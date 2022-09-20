@@ -7,4 +7,8 @@ export default class BasketService {
     async retrieveBasketProducts () {
         return this.basketRepository.getAll()
     }
+
+    async addProductToBasket(product) {
+        this.basketRepository.save(product)
+    }
 }
