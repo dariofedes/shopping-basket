@@ -8,6 +8,7 @@ export function useBasketImplementation() {
     const basketService = new BasketService(basketRepository)
 
     const [basket, setBasket] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         (async () => {
@@ -16,8 +17,10 @@ export function useBasketImplementation() {
     }, [])
 
     async function loadBasket() {
+        setIsLoading(true)
         const retrievedBasketProducts = await basketService.retrieveBasketProducts()
         setBasket(retrievedBasketProducts)
+        setIsLoading(false)
     }
 
     async function addToBasket(product) {
@@ -42,7 +45,8 @@ export function useBasketImplementation() {
     return {
         basket,
         addToBasket,
-        isProductInBasket
+        isProductInBasket,
+        isLoading,
     }
 }
 

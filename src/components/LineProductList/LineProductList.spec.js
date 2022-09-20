@@ -2,8 +2,18 @@
 /* eslint-disable testing-library/no-node-access */
 import { render } from '@testing-library/react'
 import ProductList from './LineProductList'
+import * as hooks from '../../hooks/use-basket'
 
 describe('ProductList', () => {
+    const mockUseBasket = {
+        basket: [],
+        isProductInBasket: jest.fn()
+    }
+
+    beforeEach(() => {
+        jest.spyOn(hooks, 'useBasket').mockImplementation(() => mockUseBasket)
+    })
+    
     it.each([
         [[
             {

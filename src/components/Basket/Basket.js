@@ -1,10 +1,11 @@
 import './styles.sass'
 import BasketProduct from '../BasketProduct/BasketProduct'
 import PriceTag from '../PriceTag/PriceTag'
+import Loading from '../Loading/Loading'
 import { useBasket } from '../../hooks/use-basket'
 
 export default function Basket() {
-    const { basket } = useBasket()
+    const { basket, isLoading } = useBasket()
 
     function getTotal() {
         return basket.reduce((accumulator, product) => accumulator + product.price, 0)
@@ -17,7 +18,9 @@ export default function Basket() {
             </div>
             <ul className='basket__product-list'>
                 {
-                    basket.map(product => <BasketProduct product={product} key={product.id} />)
+                    isLoading
+                    ? <Loading />
+                    : basket.map(product => <BasketProduct product={product} key={product.id} />)
                 }
             </ul>
             <div className='basket__footer'>
