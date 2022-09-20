@@ -6,7 +6,7 @@ describe('ProductService', () => {
     let spyProductRepository
 
     beforeEach(() => {
-        spyProductRepository = new ProductRepository()
+        spyProductRepository = ProductRepository.getInstance()
         const productsPromise = new Promise(resolve => {
             resolve([])
         })

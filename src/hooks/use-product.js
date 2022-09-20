@@ -3,7 +3,7 @@ import ProductService from '../application/product-service'
 import ProductRepository from '../infrastructure/product-repository'
 
 export function useProduct() {
-    const productRepository = new ProductRepository()
+    const productRepository = ProductRepository.getInstance()
     const productService = new ProductService(productRepository)
 
     const [products, setProducts] = useState([])

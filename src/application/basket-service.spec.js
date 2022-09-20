@@ -6,7 +6,7 @@ describe('BasketService', () => {
     let spyBasketRepository
 
     beforeEach(() => {
-        spyBasketRepository = new BasketRepository()
+        spyBasketRepository = BasketRepository.getInstance()
         const productsPromise = new Promise(resolve => {
             resolve([])
         })

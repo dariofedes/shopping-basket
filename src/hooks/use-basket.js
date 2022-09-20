@@ -4,7 +4,7 @@ import BasketService from '../application/basket-service'
 import BasketRepository from '../infrastructure/basket-repository'
 
 export function useBasketImplementation() {
-    const basketRepository = new BasketRepository()
+    const basketRepository = BasketRepository.getInstance()
     const basketService = new BasketService(basketRepository)
 
     const [basket, setBasket] = useState([])
