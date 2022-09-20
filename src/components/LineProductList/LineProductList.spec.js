@@ -2,7 +2,8 @@
 /* eslint-disable testing-library/no-node-access */
 import { render } from '@testing-library/react'
 import ProductList from './LineProductList'
-import * as hooks from '../../hooks/use-basket'
+import * as useBasketHook from '../../hooks/use-basket'
+import * as useProductHook from '../../hooks/use-product'
 
 describe('ProductList', () => {
     const mockUseBasket = {
@@ -11,7 +12,7 @@ describe('ProductList', () => {
     }
 
     beforeEach(() => {
-        jest.spyOn(hooks, 'useBasket').mockImplementation(() => mockUseBasket)
+        jest.spyOn(useBasketHook, 'useBasket').mockImplementation(() => mockUseBasket)
     })
     
     it.each([
@@ -64,6 +65,13 @@ describe('ProductList', () => {
             }
         ]]
     ])('should render all the products passed via props', (products) => {
+        // Given
+        jest.spyOn(useProductHook, 'useProduct').mockImplementation(() => ({
+            isLoading: false,
+            products
+        }))
+
+
         // When
         const { container } = render(<ProductList products={products} />)
 

@@ -1,21 +1,21 @@
-import PropTypes from 'prop-types'
+import { useProduct } from '../../hooks/use-product'
 import LineProduct from "../LineProduct/LineProduct";
-import { productType } from '../Product/Product'
+import Loading from '../Loading/Loading';
 import './styles.sass'
 
-export default function ProductList({ products }) {
+export default function ProductList() {
+    const { products, isLoading } = useProduct()
     return (
         <ul className='product-list'>
-            {products && products.map(product => (
-                <LineProduct className='product-list__product'
-                    product={product}
-                    key={product.id}
-                />
-            ))}
+            {
+                isLoading
+                ? <Loading />
+                : products.map(product => (
+                    <LineProduct className='product-list__product'
+                        product={product}
+                        key={product.id}
+                    />
+                ))}
         </ul>
     )
-}
-
-ProductList.propTypes = {
-    products: PropTypes.arrayOf(productType).isRequired
 }
