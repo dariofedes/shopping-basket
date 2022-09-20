@@ -6,24 +6,30 @@
     display: flex
     flex-direction: column
     justify-content: space-between
+    width: 100%
+    height: auto
+    position: fixed
+    bottom: 0
+    left: 0
     & > *
         margin: 0 1rem
     &__header
-        padding: 1rem 2rem
+        display: none
         margin: 0
+        padding: 1rem 2rem
         border-bottom: 1px solid $primary-color
     &__title
         font-size: 16px
         font-weight: 600
         color: $primary-color
     &__product-list
+        display: none
         list-style-type: none
-
     &__footer
         display: flex
         justify-content: space-between
         align-items: baseline
-        gap: 5rem
+        gap: 3rem
         padding: 2rem 1rem
     &__total-products
         align-items: baseline
@@ -34,3 +40,14 @@
         font-weight: 700
     &__total-products-count
         font-size: 16px
+
+@media screen and ( min-width: 1024px)
+    .basket
+        width: 30%
+        min-width: 400px
+        flex-wrap: nowrap
+        position: inherit
+        &__header
+            display: initial
+        &__product-list
+            display: initial
