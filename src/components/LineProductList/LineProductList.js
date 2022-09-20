@@ -1,12 +1,12 @@
 import { useProduct } from '../../hooks/use-product'
-import LineProduct from "../LineProduct/LineProduct";
-import Loading from '../Loading/Loading';
+import LineProduct from "../LineProduct/LineProduct"
+import Loading from '../Loading/Loading'
 import './styles.sass'
 
 export default function ProductList() {
     const { products, isLoading } = useProduct()
     return (
-        <ul className='product-list'>
+        <ul className='product-list' data-testid='product-list'>
             {
                 isLoading
                 ? <Loading />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import ProductService from '../application/product-service';
-import ProductRepository from '../infrastructure/product-repository';
+import ProductService from '../application/product-service'
+import ProductRepository from '../infrastructure/product-repository'
 
 export function useProduct() {
     const productRepository = new ProductRepository()
@@ -17,8 +17,10 @@ export function useProduct() {
 
     async function loadProducts() {
         setIsLoading(true)
+
         const retrievedProducts = await productService.retrieveProducts()
         setProducts(retrievedProducts)
+        
         setIsLoading(false)
     }
 

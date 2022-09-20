@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import BasketProduct from './BasketProduct'
 
@@ -11,20 +11,23 @@ describe('BasketProduct', () => {
     }
 
     it('should show the given product name', () => {
+        // When
         render(<BasketProduct product={product} />)
     
+        // Then
         const productName = screen.getByText(product.name)
-    
         expect(productName).toBeInTheDocument()
     })
 
     it('should show the given product price', () => {
+        // Given
+        const priceTag = `100,00 €`
+        
+        // When
         render(<BasketProduct product={product} />)
 
-        const priceTag = `100,00 €`
-    
+        // Then
         const productPrice = screen.getByText(priceTag)
-    
         expect(productPrice).toBeInTheDocument()
     })
 

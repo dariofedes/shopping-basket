@@ -3,15 +3,15 @@ import ProductRepository from '../infrastructure/product-repository'
 
 describe('ProductService', () => {
     let productService
-    let mockProductRepository
+    let spyProductRepository
 
     beforeEach(() => {
-        mockProductRepository = new ProductRepository()
+        spyProductRepository = new ProductRepository()
         const productsPromise = new Promise(resolve => {
             resolve([])
         })
-        mockProductRepository.getAll = jest.fn(() => productsPromise)
-        productService = new ProductService(mockProductRepository)
+        spyProductRepository.getAll = jest.fn(() => productsPromise)
+        productService = new ProductService(spyProductRepository)
     })
 
     it('should return an array', async () => {
@@ -27,7 +27,7 @@ describe('ProductService', () => {
         productService.retrieveProducts()
 
         // Then
-        expect(mockProductRepository.getAll).toHaveBeenCalled()
+        expect(spyProductRepository.getAll).toHaveBeenCalled()
     })
 
     afterEach(() => {

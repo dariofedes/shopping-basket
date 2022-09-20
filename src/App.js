@@ -1,6 +1,6 @@
-import ProductList from './components/LineProductList/LineProductList';
+import ProductList from './components/LineProductList/LineProductList'
 import Basket from './components/Basket/Basket'
-import './App.sass';
+import './App.sass'
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <ProductList className='app__product-list' />
       <Basket className='app__basket' />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

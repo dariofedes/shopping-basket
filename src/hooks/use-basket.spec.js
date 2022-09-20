@@ -1,5 +1,5 @@
-import { renderHook, act, cleanup } from "@testing-library/react";
-import { useBasketImplementation } from "./use-basket";
+import { renderHook, act, cleanup } from '@testing-library/react'
+import { useBasketImplementation } from './use-basket'
 import BasketService from '../application/basket-service'
 
 describe('useBasket', () => {

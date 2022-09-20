@@ -1,17 +1,17 @@
-import BasketService from "./basket-service"
+import BasketService from './basket-service'
 import BasketRepository from '../infrastructure/basket-repository'
 
 describe('BasketService', () => {
     let basketService
-    let mockBasketRepository
+    let spyBasketRepository
 
     beforeEach(() => {
-        mockBasketRepository = new BasketRepository()
+        spyBasketRepository = new BasketRepository()
         const productsPromise = new Promise(resolve => {
             resolve([])
         })
-        mockBasketRepository.getAll = jest.fn(() => productsPromise)
-        basketService = new BasketService(mockBasketRepository)
+        spyBasketRepository.getAll = jest.fn(() => productsPromise)
+        basketService = new BasketService(spyBasketRepository)
     })
 
     it('should return a promise that resolves to an array', async () => {
@@ -29,7 +29,7 @@ describe('BasketService', () => {
         basketService.retrieveBasketProducts()
 
         // Then
-        expect(mockBasketRepository.getAll).toHaveBeenCalled()
+        expect(spyBasketRepository.getAll).toHaveBeenCalled()
     })
 
     afterEach(() => {

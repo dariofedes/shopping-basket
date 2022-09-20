@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 export default class BasketService {
     constructor(basketRepository) {
         this.basketRepository = basketRepository
@@ -9,10 +8,10 @@ export default class BasketService {
     }
 
     async addProductToBasket(product) {
-        this.basketRepository.save(product)
+        return this.basketRepository.save(product)
     }
 
     async removeProductFromBasket(product) {
-        this.basketRepository.remove(product)
+        return this.basketRepository.remove(product)
     }
 }

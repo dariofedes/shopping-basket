@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
 import AddToBasketButton from './AddToBasketButton'
 
@@ -8,6 +8,7 @@ describe('AddToBasketButton', () => {
         const spyOnClickHandler = jest.fn()
         render(<AddToBasketButton addToBasket={spyOnClickHandler} />)
         const button = screen.getByRole('button')
+        
         // When
         fireEvent.click(button)
 

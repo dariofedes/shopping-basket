@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
 import { singletonHook } from 'react-singleton-hook'
-import BasketService from '../application/basket-service';
-import BasketRepository from '../infrastructure/basket-repository';
+import { useEffect, useState } from 'react'
+import BasketService from '../application/basket-service'
+import BasketRepository from '../infrastructure/basket-repository'
 
 export function useBasketImplementation() {
     const basketRepository = new BasketRepository()
@@ -18,8 +18,10 @@ export function useBasketImplementation() {
 
     async function loadBasket() {
         setIsLoading(true)
+
         const retrievedBasketProducts = await basketService.retrieveBasketProducts()
         setBasket(retrievedBasketProducts)
+        
         setIsLoading(false)
     }
 

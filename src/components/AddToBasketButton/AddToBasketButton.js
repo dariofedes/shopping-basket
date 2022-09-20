@@ -1,7 +1,6 @@
-/* eslint-disable global-require */
 import PropTypes from 'prop-types'
-import './styles.sass'
 import basketLogo from '../../assets/add-to-cart.png'
+import './styles.sass'
 
 export default function AddTobasketButton ({ addToBasket, disabled }) {
     return (

@@ -1,7 +1,6 @@
-/* eslint-disable testing-library/prefer-find-by */
 /* eslint-disable testing-library/no-node-access */
 /* eslint-disable testing-library/no-container */
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom'
 import { render, waitFor, fireEvent, screen } from '@testing-library/react'
 import App from './App'
 

@@ -1,4 +1,4 @@
-import ProductRepository from "./product-repository";
+import ProductRepository from './product-repository'
 
 describe('ProductRepository', () => {
     it('should be a singleton', () => {

@@ -1,4 +1,4 @@
-import BasketRepository from "./basket-repository";
+import BasketRepository from './basket-repository'
 
 describe('BasketRepository', () => {
     it('should be a singleton', () => {

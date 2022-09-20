@@ -6,12 +6,16 @@ export default function PriceTag ({ price, total, disabled }) {
         const euroFormatter = Intl.NumberFormat("es-ES", {
             style: "currency",
             currency: "EUR",
-        });
+        })
 
         return euroFormatter.format(price)
     }
 
-    return <p className={`product-price ${total && 'product-price--total'} ${disabled && 'product-price--disabled'}`}>{formatPrice(price)}</p>
+    return (
+        <p className={`product-price ${total ? 'product-price--total' : ''} ${disabled ? 'product-price--disabled' : ''}`}>
+            {formatPrice(price)}
+        </p>
+    )
 }
 
 PriceTag.propTypes = {

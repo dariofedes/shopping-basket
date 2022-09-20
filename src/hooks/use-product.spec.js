@@ -1,5 +1,5 @@
-import { renderHook } from "@testing-library/react";
-import { useProduct } from "./use-product";
+import { renderHook } from '@testing-library/react'
+import { useProduct } from './use-product'
 import ProductService from '../application/product-service'
 
 describe('useProduct', () => {

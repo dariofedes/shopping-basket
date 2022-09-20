@@ -6,7 +6,10 @@ export default function Product ({ product, inBasket }) {
     return (
         <div className='product'>
             <p className='product__name'>{product.name}</p>
-            <PriceTag className='product__price' price={product.price} disabled={inBasket} />
+            <PriceTag className='product__price'
+                price={product.price}
+                disabled={inBasket}
+            />
         </div>
     )
 }
