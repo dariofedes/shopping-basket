@@ -5,11 +5,7 @@ import Loading from '../Loading/Loading'
 import { useBasket } from '../../hooks/use-basket'
 
 export default function Basket() {
-    const { basket, isLoading } = useBasket()
-
-    function getTotal() {
-        return basket.reduce((accumulator, product) => accumulator + product.price, 0)
-    }
+    const { basket, isLoading, total } = useBasket()
 
     return (
         <div className='basket'>
@@ -34,7 +30,7 @@ export default function Basket() {
                     <p className='basket__products-count'>
                         {`(${basket.length} productos)`}
                     </p>
-                    <PriceTag className='basket__total' price={getTotal()} total />
+                    <PriceTag className='basket__total' price={total} total />
                 </div>
             </div>
         </div>

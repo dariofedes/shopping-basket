@@ -27,7 +27,7 @@ describe('App Acceptance Test', () => {
         // Then
         const totalProducts = screen.getByText('(2 productos)')
         expect(totalProducts).toBeInTheDocument()
-        const totalPrice = screen.getByText('20,84 €')
+        const totalPrice = await screen.findByText('20,84 €')
         expect(totalPrice).toBeInTheDocument()
     })
 })

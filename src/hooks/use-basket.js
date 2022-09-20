@@ -9,6 +9,7 @@ export function useBasketImplementation() {
 
     const [basket, setBasket] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [total, setTotal] = useState(0)
 
     useEffect(() => {
         (async () => {
@@ -21,6 +22,7 @@ export function useBasketImplementation() {
 
         const retrievedBasketProducts = await basketService.retrieveBasketProducts()
         setBasket(retrievedBasketProducts)
+        setTotal(getTotal(retrievedBasketProducts))
         
         setIsLoading(false)
     }
@@ -31,6 +33,8 @@ export function useBasketImplementation() {
 
         try {
             await basketService.addProductToBasket(product)
+
+            setTotal(getTotal(basketWithAddedProduct))
         } catch {
             undoAdd(product)
         }
@@ -42,6 +46,8 @@ export function useBasketImplementation() {
 
         try {
             await basketService.removeProductFromBasket(product)
+
+            setTotal(getTotal(basketWithoutRemovedProduct))
         } catch {
             undoRemove(product)
         }
@@ -50,15 +56,21 @@ export function useBasketImplementation() {
     function undoRemove(product) {
         const basketWithChangesUndone = [ ...basket, product ]
         setBasket(basketWithChangesUndone)
+        setTotal(getTotal(basketWithChangesUndone))
     }
 
     function undoAdd(product) {
         const basketWithChangesUndone = basket.filter((productInBasket) => productInBasket.id !== product.id)
         setBasket(basketWithChangesUndone)
+        setTotal(getTotal(basketWithChangesUndone))
     }
 
     function isProductInBasket(product) {
         return basket.filter(productInBasket => productInBasket.id === product.id).length > 0
+    }
+
+    function getTotal(basketProducts) {
+        return basketProducts.reduce((accumulator, product) => accumulator + product.price, 0)
     }
 
     return {
@@ -67,7 +79,12 @@ export function useBasketImplementation() {
         isProductInBasket,
         isLoading,
         removeFromBasket,
+        total
     }
 }
 
-export const useBasket = singletonHook({ basket: [] }, useBasketImplementation)
+export const useBasket = singletonHook({
+    basket: [],
+    isLoading: true,
+    total: 0
+}, useBasketImplementation)

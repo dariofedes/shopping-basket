@@ -31,7 +31,10 @@ describe('Basket', () => {
     })
 
     it('should show the basket with 0 products added', () => {
-        jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({ basket: [] }))
+        jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({
+            basket: [],
+            total: 0
+        }))
 
         // When
         render(<Basket />)
@@ -73,6 +76,12 @@ describe('Basket', () => {
     })
 
     it('should show the total price of the products in basket', () => {
+        // Given
+        jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({
+            basket: products,
+            total: 600
+        }))
+
         // When
         render(<Basket />)
 
