@@ -1,5 +1,5 @@
 import BasketService from './basket-service'
-import BasketRepository from '../infrastructure/basket-repository'
+import BasketRepository from '../repositories/basket-repository'
 
 describe('BasketService', () => {
     let basketService

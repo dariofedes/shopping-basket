@@ -1,10 +1,10 @@
 import { renderHook, act, cleanup } from '@testing-library/react'
 import { useBasketImplementation } from './use-basket'
-import BasketService from '../application/basket-service'
+import BasketService from '../services/basket-service'
 
 describe('useBasket', () => {
     beforeEach(() => {
-        jest.mock('../application/basket-service')
+        jest.mock('../services/basket-service')
     })
     it('should load products in basket on mount', () => {
         // Given

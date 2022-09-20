@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react'
 import { useProduct } from './use-product'
-import ProductService from '../application/product-service'
+import ProductService from '../services/product-service'
 
 describe('useProduct', () => {
     beforeEach(() => {
-        jest.mock('../application/product-service')
+        jest.mock('../services/product-service')
     })
 
     it('should load products on mount', () => {

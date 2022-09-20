@@ -1,7 +1,7 @@
 import { singletonHook } from 'react-singleton-hook'
 import { useEffect, useState } from 'react'
-import BasketService from '../application/basket-service'
-import BasketRepository from '../infrastructure/basket-repository'
+import BasketService from '../services/basket-service'
+import BasketRepository from '../repositories/basket-repository'
 
 export function useBasketImplementation() {
     const basketRepository = BasketRepository.getInstance()

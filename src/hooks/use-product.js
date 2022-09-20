@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import ProductService from '../application/product-service'
-import ProductRepository from '../infrastructure/product-repository'
+import ProductService from '../services/product-service'
+import ProductRepository from '../repositories/product-repository'
 
 export function useProduct() {
     const productRepository = ProductRepository.getInstance()
