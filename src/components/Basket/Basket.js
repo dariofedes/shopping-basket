@@ -1,11 +1,11 @@
 import './styles.sass'
 import BasketProduct from '../BasketProduct/BasketProduct'
-import PriceTag from '../PriceTag/PriceTag'
+import Total from '../Total/Total'
 import Loading from '../Loading/Loading'
 import { useBasket } from '../../hooks/use-basket'
 
 export default function Basket() {
-    const { basket, isLoading, total } = useBasket()
+    const { basket, isLoading } = useBasket()
 
     return (
         <div className='basket'>
@@ -24,15 +24,7 @@ export default function Basket() {
                     ))
                 }
             </ul>
-            <div className='basket__total-container'>
-                <p className='basket__total-title'>TOTAL</p>
-                <div className='basket__details'>
-                    <p className='basket__products-count'>
-                        {`(${basket.length} productos)`}
-                    </p>
-                    <PriceTag className='basket__total' price={total} total />
-                </div>
-            </div>
+            <Total className='basket__total' />
         </div>
     )
 }

@@ -30,7 +30,7 @@ describe('Basket', () => {
         jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({ basket: products }))
     })
 
-    it('should show the basket with 0 products added', () => {
+    it('should show the basket', async () => {
         jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({
             basket: [],
             total: 0
@@ -41,14 +41,8 @@ describe('Basket', () => {
     
         // Then
         const basketTitle = screen.getByText('MI CESTA:')
-        const totalTitle = screen.getByText('TOTAL')
-        const totalProducts = screen.getByText('(0 productos)')
-        const totalPrice = screen.getByText('0,00 €')
     
         expect(basketTitle).toBeInTheDocument()
-        expect(totalTitle).toBeInTheDocument()
-        expect(totalProducts).toBeInTheDocument()
-        expect(totalPrice).toBeInTheDocument()
     })
 
     it('should show products added to the basket', async () => {
@@ -58,35 +52,5 @@ describe('Basket', () => {
         // Then
         const productsInBasket = await screen.findAllByRole('listitem')
         expect(productsInBasket).toHaveLength(3)
-        expect(screen.getByText('A product name 1')).toBeInTheDocument()
-        expect(screen.getByText('100,00 €')).toBeInTheDocument()
-        expect(screen.getByText('A product name 2')).toBeInTheDocument()
-        expect(screen.getByText('200,00 €')).toBeInTheDocument()
-        expect(screen.getByText('A product name 3')).toBeInTheDocument()
-        expect(screen.getByText('300,00 €')).toBeInTheDocument()
-    })
-
-    it('should show a count of products in basket', () => {
-        // When
-        render(<Basket />)
-
-        // Then
-        const productsCounter = screen.getByText('(3 productos)')
-        expect(productsCounter).toBeInTheDocument()
-    })
-
-    it('should show the total price of the products in basket', () => {
-        // Given
-        jest.spyOn(hooks, 'useBasket').mockImplementation(() => ({
-            basket: products,
-            total: 600
-        }))
-
-        // When
-        render(<Basket />)
-
-        // Then
-        const totalPrice = screen.getByText('600,00 €')
-        expect(totalPrice).toBeInTheDocument()
     })
 })

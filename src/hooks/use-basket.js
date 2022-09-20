@@ -79,7 +79,8 @@ export function useBasketImplementation() {
         isProductInBasket,
         isLoading,
         removeFromBasket,
-        total
+        total,
+        productsCount: basket.length
     }
 }
 
