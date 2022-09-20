@@ -61,6 +61,28 @@ describe('useBasket', () => {
         expect(spyAddProductToBasket).toHaveBeenCalledWith(productToAdd)
     })
 
+    it('should remove a product from basket', async () => {
+        // Given
+        const spyAddProductToBasket = jest.fn()
+        BasketService.prototype.addProductToBasket = spyAddProductToBasket
+        const { result } = renderHook(() => useBasketImplementation())
+        const product ={
+            id: 1,
+            name: 'A product name',
+            price: 100,
+            image: 'an-image-uri.jpg'
+        } 
+
+        // When
+        act(() => {
+            result.current.addToBasket(product)
+            result.current.removeFromBasket(product)
+        })
+
+        // Then
+        expect(result.current.basket).toHaveLength(0)
+    })
+
     afterEach(() => {
         cleanup()
         jest.clearAllMocks()

@@ -17,4 +17,10 @@ export default class BasketRepository {
             resolve(product)
         })
     }
+
+    remove(product) {
+        return new Promise(resolve => {
+            resolve(product)
+        })
+    }
 }

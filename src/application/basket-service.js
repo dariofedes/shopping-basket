@@ -11,4 +11,8 @@ export default class BasketService {
     async addProductToBasket(product) {
         this.basketRepository.save(product)
     }
+
+    async removeProductFromBasket(product) {
+        this.basketRepository.remove(product)
+    }
 }

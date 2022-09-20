@@ -26,16 +26,33 @@ export function useBasketImplementation() {
     async function addToBasket(product) {
         const basketWithAddedProduct = [ ...basket, product ]
         setBasket(basketWithAddedProduct)
+
         try {
             await basketService.addProductToBasket(product)
         } catch {
-            removeFromBasket(product)
+            undoAdd(product)
         }
     }
 
-    function removeFromBasket(product) {
-        const basketWithoutRemovedProduct = basket.filter((productInBasket) => productInBasket.id === product.id)
+    async function removeFromBasket(product) {
+        const basketWithoutRemovedProduct = basket.filter((productInBasket) => productInBasket.id !== product.id)
         setBasket(basketWithoutRemovedProduct)
+
+        try {
+            await basketService.removeProductFromBasket(product)
+        } catch {
+            undoRemove(product)
+        }
+    }
+
+    function undoRemove(product) {
+        const basketWithChangesUndone = [ ...basket, product ]
+        setBasket(basketWithChangesUndone)
+    }
+
+    function undoAdd(product) {
+        const basketWithChangesUndone = basket.filter((productInBasket) => productInBasket.id !== product.id)
+        setBasket(basketWithChangesUndone)
     }
 
     function isProductInBasket(product) {
@@ -47,6 +64,7 @@ export function useBasketImplementation() {
         addToBasket,
         isProductInBasket,
         isLoading,
+        removeFromBasket,
     }
 }
 
